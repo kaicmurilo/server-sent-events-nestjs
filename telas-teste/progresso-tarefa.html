@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Eventos SSE</h1>
+    <div id="events"></div>
+
+    <script>
+      const eventSource = new EventSource('http://localhost:3000/events/tasks');
+      eventSource.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        document.getElementById('events').innerHTML +=
+          `<p>${data.message} - ${data.progress}</p>`;
+      };
+    </script>
+  </body>
+</html>

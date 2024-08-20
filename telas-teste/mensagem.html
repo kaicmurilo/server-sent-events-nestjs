@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste SSE</title>
+  </head>
+  <body>
+    <h1>Mensagens em tempo real:</h1>
+    <ul id="messages"></ul>
+
+    <script>
+      const eventSource = new EventSource('http://localhost:3000/events/sse');
+      eventSource.onmessage = function (event) {
+        const messageElement = document.createElement('li');
+        messageElement.textContent = event.data;
+        document.getElementById('messages').appendChild(messageElement);
+      };
+    </script>
+  </body>
+</html>
